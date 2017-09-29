@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+
+var socket = io();
+
+socket.on('update',function(){
+});
+
+
+function Update(){
+  socket.emit('update');
+}
+</script>
+</head>
+<body>
+<% include header %>
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Welcome to this System !!</h1>
+    <h3>When going out , change the place by pressing the button.Your place is displayed and you can tell students the place.</h3>
+    <div class="row">
+      <h2 class="col-sm-3" height="30px"><label>Name</label></h2>
+      <h1 class="col-sm-9" height="30px"><%=user.name %></h1>
+    </div>
+
+    <div class="row">
+      <h2 class="col-sm-3" height="30px"><label>Place</label></h2>
+      <h1 class="col-sm-9" height="30px"><%=user.status %></h1>
+    </div>
+
+    <div class="row">
+      <h2 class="col-sm-3" height="30px"><label>Update time</label></h2>
+      <h1 class="col-sm-9" height="30px"><%=user.now %></h1>
+    </div>
+    <div>
+      <a href="../update/1" class="btn btn-primary" onclick="Update()">教務室</a>
+      <a href="../update/2" class="btn btn-success" onclick="Update()">教室</a>
+      <a href="../update/4" class="btn btn-danger" onclick="Update()">研究室</a>
+      <a href="../update/5" class="btn btn-warning" onclick="Update()">外出</a>
+      <a href="../update/3" class="btn btn-info" onclick="Update()">その他</a>
+    </div>
+  </div>
+</div>
+</body>

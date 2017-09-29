@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title> teacher</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+
+var socket = io();
+
+socket.on('update',function(){
+  location.reload();
+});
+</script>
+</head>
+<body>
+<% if(session){ %>
+<% include header %>
+<% }else{ %>
+<% include before_login_header %>
+<% } %>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">ALL Teacher</div>
+      <div class="panel-body">
+        <p>先生の情報を表示します。</div>
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>名前</th>
+                  <th>場所</th>
+                  <th>更新時間</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% data.forEach(function(user){ %>
+                <tr>
+                  <td><%=user.name%>先生</td>
+                  <td><%=user.status%></td>
+                  <td><%=user.now%></td>
+                </tr>
+                <%})%>
+              </tbody>
+            </table>
+          </div>
+      </div>
+  </div>
+</div>
+</body>
+</html>
